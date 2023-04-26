@@ -16,3 +16,5 @@ src/test/test-files/*.tsx
 *.tsbuildinfo
 
 coverage/
+
+.idea/

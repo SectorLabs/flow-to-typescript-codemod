@@ -232,7 +232,7 @@ export async function runPrimaryAsync(options: ConvertCommandCliArgs) {
     logger.info("Moving files with git...");
     for (const { filePath, hasJsx } of mergedReport.migrationSuccessItems) {
       const target = filePath
-        .replace(/\.jsx$/, ".tsx")
+        .replace(/\.jsx$/, hasJsx ? ".tsx" : ".ts")
         .replace(/\.js$/, hasJsx ? ".tsx" : ".ts");
       await _maybeMoveWithGit(filePath, target);
     }

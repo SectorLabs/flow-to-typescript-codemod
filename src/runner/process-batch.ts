@@ -60,7 +60,7 @@ export async function processBatchAsync(
         const file: t.File = recast.parse(fileText, {
           parser: recastFlowParser,
         });
-        const isTestFile = filePath.endsWith(".test.js");
+        const isTestFile = filePath.endsWith(".test.js") || filePath.endsWith(".test.jsx");
         if (hasDeclaration(file)) {
           reporter.foundDeclarationFile(filePath);
           return;
@@ -135,6 +135,7 @@ export async function processBatchAsync(
               "__snapshots__",
               `${tsFileName}.snap`
             );
+
             if (snapshotPath !== newSnapPath) {
               reporter.migrateSnapFile(
                 filePath,
